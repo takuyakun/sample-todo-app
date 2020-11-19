@@ -1,6 +1,17 @@
 package com.sample.todo.entity;
 
-public class TodoApp {
+import java.io.Serializable;
+
+/**
+ * TODO_APPテーブルに該当するエンティティクラス<br>
+ * JavaBeansのルールに従っています。
+ */
+public class TodoApp implements Serializable {
+    /**
+     * おまじない
+     */
+    private static final long serialVersionUID = 1L;
+
     private int todoId;
     private String title;
     private String detail;

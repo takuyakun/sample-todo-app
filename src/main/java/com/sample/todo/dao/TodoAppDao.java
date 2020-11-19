@@ -10,6 +10,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * データアクセスオブジェクト（DataAccessObject=Dao）<br>
+ * データアクセス関連を記述するクラス
+ */
 @Component
 public class TodoAppDao {
 
@@ -19,7 +23,6 @@ public class TodoAppDao {
     public List<TodoApp> getTodoAppList() {
         List<TodoApp> resultList = jdbcTemplate.query("SELECT * FROM TODO_APP", new MapSqlParameterSource(null),
                 new TodoAppRowMapper());
-
         return resultList;
     }
 

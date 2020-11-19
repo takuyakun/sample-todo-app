@@ -5,6 +5,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * データベースから取出したReesultSetをTodoAppクラスに変換するクラス
+ */
 public class TodoAppRowMapper implements RowMapper<TodoApp> {
 
     @Override

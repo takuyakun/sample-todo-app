@@ -8,9 +8,17 @@ import com.sample.todo.entity.TodoApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * ロジックを記述するクラス<br>
+ *
+ * @Componentと書いておくと、他からはは@Autowiredと記述すれば利用できる。Spring Beanという概念。
+ */
 @Component
 public class TodoAppService {
 
+    /**
+     * TodoAppDaoは@Componentを持っているので、@Autowiredで利用できる（裏でSpringがこっそりセットしています）
+     */
     @Autowired
     private TodoAppDao dao;
 

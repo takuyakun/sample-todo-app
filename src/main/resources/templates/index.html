@@ -23,6 +23,7 @@
         </thead>
         <tbody>
             <tr th:each="result : ${todoList}">
+                <!--tymeleafの記述方法 -->
                 <td class="todo-id" th:text="${result['todoId']}"></td>
                 <td class="title" th:text="${result['title']}"></td>
                 <td class="detail" th:text="${result['detail']}"></td>
@@ -30,4 +31,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
