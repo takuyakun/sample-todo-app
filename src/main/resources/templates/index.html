@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sample TODO Application</title>
+
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="result : ${todoList}">
+                <td class="todo-id" th:text="${result['todoId']}"></td>
+                <td class="title" th:text="${result['title']}"></td>
+                <td class="detail" th:text="${result['detail']}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

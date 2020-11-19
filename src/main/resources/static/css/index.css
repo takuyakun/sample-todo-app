@@ -1,0 +1,22 @@
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    line-height: 1.5;
+  }
+
+
+table td.todo-id {
+    width: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+table td.title {
+    width: 150px;
+    padding: 10px;
+}
+
+table td.detail {
+    width: 500px;
+    padding: 10px;
+}
