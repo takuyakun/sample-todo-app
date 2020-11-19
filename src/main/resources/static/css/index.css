@@ -1,8 +1,16 @@
+h1 {
+    margin: 10px;
+}
+
+table {
+    margin: 10px;
+}
+
 table, th, td {
     border-collapse: collapse;
     border: 1px solid #ccc;
     line-height: 1.5;
-  }
+}
 
 
 table td.todo-id {
@@ -19,4 +27,12 @@ table td.title {
 table td.detail {
     width: 500px;
     padding: 10px;
+}
+
+.operation-area{
+    margin: 10px;
+}
+
+button{
+    padding: 0.3em 1em;
 }

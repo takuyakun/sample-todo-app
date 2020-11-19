@@ -22,4 +22,18 @@ public class TodoAppDao {
 
         return resultList;
     }
+
+    public int getNextId() {
+        int maxTodoId = jdbcTemplate.queryForObject("SELECT MAX(TODO_ID) FROM TODO_APP;",
+                new MapSqlParameterSource(null), Integer.class);
+        return ++maxTodoId;
+    }
+
+    public <T> void insert(int todoId, String title, String detail) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        paramMap.addValue("todoId", todoId);
+        paramMap.addValue("title", title);
+        paramMap.addValue("detail", detail);
+        jdbcTemplate.update("INSERT INTO TODO_APP VALUES(:todoId, :title, :detail)", paramMap);
+    }
 }

@@ -17,4 +17,9 @@ public class TodoAppService {
     public List<TodoApp> getTodoAppList() {
         return dao.getTodoAppList();
     }
+
+    public void register(String title, String detail) {
+        int nextId = dao.getNextId();
+        dao.insert(nextId, title, detail);
+    }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sample TODO Application</title>
+
+    <link rel="stylesheet" href="css/detail.css" type="text/css" />
+</head>
+
+<body>
+    <h1>New Todo</h1>
+
+    <form method="POST" action="./register">
+        <ul>
+            <li>
+                <label for="title">Title</label>
+                <input id="title" type="text" name="title"></input>
+            </li>
+            <li>
+                <label for="detail">Detail</label>
+                <textarea id="detail" type="text" name="detail"></textarea>
+            </li>
+            <li><input class="button" type="submit" name="register" value="Register"></input></li>
+        </ul>
+    </form>
+</body>
+</html>
