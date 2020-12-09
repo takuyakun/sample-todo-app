@@ -23,7 +23,7 @@ public class TodoAppController {
 
     /**
      * valueの部分がURL<br>
-     * POSTを許可しているのは、#registerからforwardしてくるため
+     * POSTを許可しているのは、{@code #register(TodoApp, Model)} からredirectしてくるため
      */
     @RequestMapping(value = { "/", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
     String index(Model model) {
@@ -32,7 +32,7 @@ public class TodoAppController {
         return "index";// resources/index.htmlを指している
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     String add(Model model) {
         return "detail";
     }
@@ -40,6 +40,6 @@ public class TodoAppController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     String register(@ModelAttribute TodoApp todoApp, Model model) {
         service.register(todoApp.getTitle(), todoApp.getDetail());
-        return "forward:index";// 登録したらindexに移る
+        return "redirect:index";// 登録したらindexに移る
     }
 }
