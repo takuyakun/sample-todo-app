@@ -8,6 +8,7 @@ import com.sample.todo.entity.TodoAppRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -39,4 +40,10 @@ public class TodoAppDao {
         paramMap.addValue("detail", detail);
         jdbcTemplate.update("INSERT INTO TODO_APP VALUES(:todoId, :title, :detail)", paramMap);
     }
+
+    public void delete(int todoId) {
+        SqlParameterSource param = new MapSqlParameterSource().addValue("todoId", todoId);
+        jdbcTemplate.update("DELETE FROM TODO_APP WHERE(TODO_ID = :todoId)", param);
+      }
+
 }
