@@ -28,9 +28,9 @@ public class TodoAppDao {
     }
 
     public int getNextId() {
-        int maxTodoId = jdbcTemplate.queryForObject("SELECT MAX(TODO_ID) FROM TODO_APP;",
+        int maxTodoId = jdbcTemplate.queryForObject("SELECT ISNULL(MAX(TODO_ID)+1, 1) FROM TODO_APP;",
                 new MapSqlParameterSource(null), Integer.class);
-        return ++maxTodoId;
+        return maxTodoId;
     }
 
     public <T> void insert(int todoId, String title, String detail) {
