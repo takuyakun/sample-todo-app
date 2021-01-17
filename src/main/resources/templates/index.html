@@ -28,9 +28,14 @@
                 <td class="title" th:text="${result['title']}"></td>
                 <td class="detail" th:text="${result['detail']}"></td>
                 <td>
+                    <form method="GET" th:action="@{/edit}">
+                        <input type="hidden" name="todoId" th:value="${result['todoId']}"></input>
+                        <input type="submit" value="Edit"></input>
+                    </form>
+                </td>
+                <td>
                     <form method="POST" th:action="@{/delete(todoId=${result['todoId']})}">
                         <input type="submit" value="Delete"></input>
-                        <!--<input type="hidden" name="id" th:value="${result['todoId']}"></input>-->
                     </form>
                 </td>
             </tr>

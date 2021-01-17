@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <h1>New Todo</h1>
+    <h1>Editing Todo</h1>
 
-    <form method="POST" action="./register" th:object="${todoApp}">
+    <form th:action="@{/edit}" method="post" th:object="${todoApp}">
         <ul>
             <li>
                 <label for="title">Title</label>
@@ -23,7 +23,10 @@
                 <textarea id="detail" type="text" th:field="*{detail}"></textarea>
                 <label th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}">Detail Error</label>
             </li>
-            <li><input class="button" type="submit" name="register" value="Register"></input></li>
+            <li>
+                <input type="hidden" name="todoId" th:value="*{todoId}"></input>
+                <input class="button" type="submit" value="Update"></input>
+            </li>
         </ul>
     </form>
 </body>

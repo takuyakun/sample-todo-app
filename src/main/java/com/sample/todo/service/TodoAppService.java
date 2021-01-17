@@ -31,6 +31,14 @@ public class TodoAppService {
         dao.insert(nextId, title, detail);
     }
 
+    public TodoApp findOne(int todoId) {
+        return dao.findById(todoId);
+    }
+
+	public int update(TodoApp todoApp) {
+        return dao.update(todoApp);
+	}
+
     public void delete(int todoId) {
         dao.delete(todoId);
     }

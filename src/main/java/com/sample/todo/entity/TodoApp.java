@@ -2,6 +2,8 @@ package com.sample.todo.entity;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Length;
+
 /**
  * TODO_APPテーブルに該当するエンティティクラス<br>
  * JavaBeansのルールに従っています。
@@ -13,7 +15,9 @@ public class TodoApp implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int todoId;
+    @Length(max=30)
     private String title;
+    @Length(max=100)
     private String detail;
 
     public TodoApp() {
