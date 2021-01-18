@@ -16,6 +16,8 @@ public class TodoApp implements Serializable {
 
     private int todoId;
     @Length(max=30)
+    private String category;
+    @Length(max=30)
     private String title;
     @Length(max=100)
     private String detail;
@@ -25,6 +27,14 @@ public class TodoApp implements Serializable {
 
     public int getTodoId() {
         return this.todoId;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setTodoId(int todoId) {

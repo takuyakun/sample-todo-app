@@ -23,11 +23,11 @@ public class TodoAppDao {
 
     private static final String FIND_TODO_ID_SQL = "SELECT ISNULL(MAX(TODO_ID)+1, 1) FROM TODO_APP";
 
-    private static final String INSERT_SQL = "INSERT INTO TODO_APP VALUES(:todoId, :title, :detail)";
+    private static final String INSERT_SQL = "INSERT INTO TODO_APP VALUES(:todoId, :category, :title, :detail)";
 
     private static final String FIND_ONE_SQL = "SELECT * FROM TODO_APP WHERE TODO_ID = :todoId";
 
-    private static final String UPDATE_BY_KEY_SQL = "UPDATE TODO_APP SET TITLE = :title, DETAIL = :detail WHERE TODO_ID = :todoId";
+    private static final String UPDATE_BY_KEY_SQL = "UPDATE TODO_APP SET CATEGORY = category, TITLE = :title, DETAIL = :detail WHERE TODO_ID = :todoId";
 
     private static final String DELETE_BY_KEY_SQL = "DELETE FROM TODO_APP WHERE(TODO_ID = :todoId)";
 
@@ -45,9 +45,10 @@ public class TodoAppDao {
         return maxTodoId;
     }
 
-    public <T> void insert(int todoId, String title, String detail) {
+    public <T> void insert(int todoId, String category, String title, String detail) {
         MapSqlParameterSource paramMap = new MapSqlParameterSource();
         paramMap.addValue("todoId", todoId);
+        paramMap.addValue("category", category);
         paramMap.addValue("title", title);
         paramMap.addValue("detail", detail);
         jdbcTemplate.update(INSERT_SQL, paramMap);

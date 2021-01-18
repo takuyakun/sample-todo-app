@@ -14,6 +14,11 @@
     <form th:action="@{/edit}" method="post" th:object="${todoApp}">
         <ul>
             <li>
+                <label for="category">Category</label>
+                <input id="category" type="text" th:field="*{category}"></input>
+                <label th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category Error</label>
+            </li>
+            <li>
                 <label for="title">Title</label>
                 <input id="title" type="text" th:field="*{title}"></input>
                 <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</label>

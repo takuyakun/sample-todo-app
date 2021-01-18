@@ -26,9 +26,9 @@ public class TodoAppService {
         return dao.getTodoAppList();
     }
 
-    public void register(String title, String detail) {
+    public void register(String category, String title, String detail) {
         int nextId = dao.getNextId();
-        dao.insert(nextId, title, detail);
+        dao.insert(nextId, category, title, detail);
     }
 
     public TodoApp findOne(int todoId) {

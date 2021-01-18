@@ -45,7 +45,7 @@ public class TodoAppController {
         if (bindingResult.hasErrors()) {
             return "detail";
         }
-        service.register(todoApp.getTitle(), todoApp.getDetail());
+        service.register(todoApp.getCategory(), todoApp.getTitle(), todoApp.getDetail());
         return "redirect:index";// 登録したらindexに移る
     }
 

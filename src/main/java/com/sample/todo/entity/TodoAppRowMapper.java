@@ -14,6 +14,7 @@ public class TodoAppRowMapper implements RowMapper<TodoApp> {
     public TodoApp mapRow(ResultSet rs, int rowNum) throws SQLException {
         TodoApp app = new TodoApp();
         app.setTodoId(rs.getInt("TODO_ID"));
+        app.setCategory(rs.getString("CATEGORY"));
         app.setTitle(rs.getString("TITLE"));
         app.setDetail(rs.getString("DETAIL"));
         return app;
