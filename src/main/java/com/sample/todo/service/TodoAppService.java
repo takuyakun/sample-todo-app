@@ -42,4 +42,14 @@ public class TodoAppService {
     public void delete(int todoId) {
         dao.delete(todoId);
     }
+
+    public List<TodoApp> search(int todoId, String category, String title, String detail) {
+        List<TodoApp> result;
+		if (todoId == 0 && "".equals(category) && title == null && detail == null) {
+			result = dao.getTodoAppList();
+		} else {
+			result = dao.search(todoId, category, title, detail);
+		}
+		return result;
+	}
 }

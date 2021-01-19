@@ -13,10 +13,19 @@
     <div class="operation-area">
         <button type="button" onclick="location.href='./new'">New Todo</button>
     </div>
+        <form method="post" th:action="@{/search}">
+            <table>
+              <tr><td>TodoId : <input type="text" th:value="${todoId}"/></td></tr>
+              <tr><td>Category : <input type="text" th:value="${category}"/></td></tr>
+              <tr><td>Title : <input type="text" th:value="${title}"/></td></tr>
+              <tr><td>Detail : <input type="text" th:value="${detail}"/></td></tr>
+              <tr><td><input type="submit" value="Search"/></td></tr>
+            </table>
+        </form>
     <table>
         <thead>
             <tr>
-                <th>#</th>
+                <th>TodoId</th>
                 <th>Category</th>
                 <th>Title</th>
                 <th>Detail</th>

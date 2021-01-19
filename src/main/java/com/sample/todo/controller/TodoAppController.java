@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * ブラウザからのリクエストはここにくる
@@ -52,7 +53,7 @@ public class TodoAppController {
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     String edit(@RequestParam(value = "todoId") int todoId, Model model) {
         TodoApp todoApp = service.findOne(todoId);
-        model.addAttribute("todoApp", todoApp);// ここの"todoApp"というキーがindex.htmlで参照されている
+        model.addAttribute("todoApp", todoApp);// ここの"todoApp"というキーがedit.htmlで参照されている
         return "edit";
     }
 
@@ -71,4 +72,19 @@ public class TodoAppController {
         service.delete(todoId);
         return "redirect:index";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(ModelAndView mav
+			, @RequestParam("todoId") int todoId, @RequestParam("category") String category
+			, @RequestParam("title") String title, @RequestParam("detail") String detail) {
+		mav.setViewName("index");
+		mav.addObject("todoId", todoId);
+		mav.addObject("category", category);
+		mav.addObject("title", title);
+		mav.addObject("detail", detail);
+		List<TodoApp> result = service.search(todoId, category, title, detail);
+		mav.addObject("result", result);
+		mav.addObject("resultSize", result.size());
+		return mav;
+	}
 }
