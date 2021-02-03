@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
 /**
  * ブラウザからのリクエストはここにくる
@@ -30,7 +30,7 @@ public class TodoAppController {
      * POSTを許可しているのは、{@code #register(TodoApp, Model)} からredirectしてくるため
      */
     @RequestMapping(value = { "/", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
-    String index(Model model) {
+    String index(Model model, @ModelAttribute("todoForm") TodoApp todoApp) {
         List<TodoApp> todoList = service.getTodoAppList();
         model.addAttribute("todoList", todoList);// ここの"todoList"というキーがindex.htmlで参照されている
         return "index";// resources/index.htmlを指している
@@ -74,17 +74,10 @@ public class TodoAppController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(ModelAndView mav
-			, @RequestParam("todoId") int todoId, @RequestParam("category") String category
-			, @RequestParam("title") String title, @RequestParam("detail") String detail) {
-		mav.setViewName("index");
-		mav.addObject("todoId", todoId);
-		mav.addObject("category", category);
-		mav.addObject("title", title);
-		mav.addObject("detail", detail);
-		List<TodoApp> result = service.search(todoId, category, title, detail);
-		mav.addObject("result", result);
-		mav.addObject("resultSize", result.size());
-		return mav;
-	}
+	public String search(@ModelAttribute("todoForm") TodoApp todoApp, Model model) {
+		List<TodoApp> todoResult = service.search(todoApp.getTodoId(),todoApp.getCategory(), todoApp.getTitle(), todoApp.getDetail());
+        model.addAttribute("todoList", todoResult);
+        return "index";
+    }
+
 }

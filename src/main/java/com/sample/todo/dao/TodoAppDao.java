@@ -89,19 +89,19 @@ public class TodoAppDao {
 			andFlg = true;
         }
 
-		if (!"".equals(category) && category != null) {
+		if (!"".equals(category)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("CATEGORY LIKE :category ");
 			//categoryFlg = true;
 			andFlg = true;
 		}
-		if (!"".equals(title) && title != null) {
+		if (!"".equals(title)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("TITLE LIKE :title ");
 			//titleFlg = true;
 			andFlg = true;
 		}
-		if (!"".equals(detail) && detail != null) {
+		if (!"".equals(detail)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("DETAIL LIKE :detail ");
 			//detailFlg = true;

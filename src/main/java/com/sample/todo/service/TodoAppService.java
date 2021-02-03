@@ -1,5 +1,6 @@
 package com.sample.todo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sample.todo.dao.TodoAppDao;
@@ -44,8 +45,8 @@ public class TodoAppService {
     }
 
     public List<TodoApp> search(int todoId, String category, String title, String detail) {
-        List<TodoApp> result;
-		if (todoId == 0 && "".equals(category) && title == null && detail == null) {
+        List<TodoApp> result = new ArrayList<TodoApp>();
+		if (todoId == -1 && "".equals(category) && "".equals(title) && "".equals(detail)) {
 			result = dao.getTodoAppList();
 		} else {
 			result = dao.search(todoId, category, title, detail);
