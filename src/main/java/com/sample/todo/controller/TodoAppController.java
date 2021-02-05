@@ -30,7 +30,7 @@ public class TodoAppController {
      * POSTを許可しているのは、{@code #register(TodoApp, Model)} からredirectしてくるため
      */
     @RequestMapping(value = { "/", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
-    String index(Model model, @ModelAttribute("todoForm") TodoApp todoApp) {
+    String index(TodoApp todoApp, Model model) {
         List<TodoApp> todoList = service.getTodoAppList();
         model.addAttribute("todoList", todoList);// ここの"todoList"というキーがindex.htmlで参照されている
         return "index";// resources/index.htmlを指している
@@ -74,7 +74,7 @@ public class TodoAppController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@ModelAttribute("todoForm") TodoApp todoApp, Model model) {
+	public String search(@ModelAttribute("todoApp") TodoApp todoApp, BindingResult bindingResult, Model model) {
 		List<TodoApp> todoResult = service.search(todoApp.getTodoId(),todoApp.getCategory(), todoApp.getTitle(), todoApp.getDetail());
         model.addAttribute("todoList", todoResult);
         return "index";

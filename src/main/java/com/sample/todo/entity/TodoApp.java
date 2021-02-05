@@ -29,16 +29,16 @@ public class TodoApp implements Serializable {
         return this.todoId;
     }
 
+    public void setTodoId(int todoId) {
+        this.todoId = todoId;
+    }
+
     public String getCategory() {
         return this.category;
     }
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public void setTodoId(int todoId) {
-        this.todoId = todoId;
     }
 
     public String getTitle() {

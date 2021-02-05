@@ -13,12 +13,12 @@
     <div class="operation-area">
         <button type="button" onclick="location.href='./new'">New Todo</button>
     </div>
-        <form method="post" th:action="@{/search}" th:object="${todoForm}">
+        <form method="post" th:action="@{/search}" th:object="${todoApp}">
             <table>
-              <tr><td>TodoId : <input type="text" name="todoId" th:value="*{todoId}"/></td></tr>
-              <tr><td>Category : <input type="text" name="category" th:value="*{category}"/></td></tr>
-              <tr><td>Title : <input type="text" name="title" th:value="*{title}"/></td></tr>
-              <tr><td>Detail : <input type="text" name="detail" th:value="*{detail}"/></td></tr>
+              <tr><td>TodoId : <input type="search" name="todoId"/></td></tr>
+              <tr><td>Category : <input type="search" name="category"/></td></tr>
+              <tr><td>Title : <input type="search" name="title"/></td></tr>
+              <tr><td>Detail : <input type="search" name="detail"/></td></tr>
               <tr><td><input type="submit" value="Search"/></td></tr>
             </table>
         </form>
