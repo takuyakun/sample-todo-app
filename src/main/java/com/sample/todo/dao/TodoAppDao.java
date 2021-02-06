@@ -72,9 +72,9 @@ public class TodoAppDao {
     public List<TodoApp> search(int todoId, String category, String title, String detail) {
         MapSqlParameterSource paramMap = new MapSqlParameterSource();
         paramMap.addValue("todoId", todoId);
-        paramMap.addValue("category", category);
-        paramMap.addValue("title", title);
-        paramMap.addValue("detail", detail);
+        paramMap.addValue("category", "%" + category + "%");
+        paramMap.addValue("title", "%" + title + "%");
+        paramMap.addValue("detail", "%" + detail + "%");
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT * FROM TODO_APP WHERE ");
@@ -88,7 +88,6 @@ public class TodoAppDao {
 			//todoIdFlg = true;
 			andFlg = true;
         }
-
 		if (!"".equals(category)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("CATEGORY LIKE :category ");
@@ -106,12 +105,8 @@ public class TodoAppDao {
 			sql.append("DETAIL LIKE :detail ");
 			//detailFlg = true;
 			andFlg = true;
-		}
-		//Query query = manager.createQuery(sql.toString());
-		//if (todoIdFlg) ((Object) query).setParameter("todoId", "%" + todoId + "%");
-		//if (categoryFlg) query.setParameter("category", "%" + category + "%");
-		//if (titleFlg) query.setParameter("title", "%" + title + "%");
-		//if (detailFlg) query.setParameter("detail", "%" + detail + "%");
+        }
+
         List<TodoApp> result = jdbcTemplate.query(sql.toString(), paramMap, new TodoAppRowMapper());
         return result;
 	}
