@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.servlet.ModelAndView;
 
 /**
  * ブラウザからのリクエストはここにくる
@@ -30,19 +29,19 @@ public class TodoAppController {
      * POSTを許可しているのは、{@code #register(TodoApp, Model)} からredirectしてくるため
      */
     @RequestMapping(value = { "/", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
-    String index(TodoApp todoApp, Model model) {
+    String index(Model model) {
         List<TodoApp> todoList = service.getTodoAppList();
         model.addAttribute("todoList", todoList);// ここの"todoList"というキーがindex.htmlで参照されている
         return "index";// resources/index.htmlを指している
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    String add(TodoApp todoApp, Model model) {
+    String add(@ModelAttribute("newForm") TodoApp todoApp) {
         return "detail";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    String register(@Validated @ModelAttribute TodoApp todoApp, BindingResult bindingResult, Model model) {
+    String register(@Validated @ModelAttribute("newForm") TodoApp todoApp, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "detail";
         }
@@ -51,14 +50,14 @@ public class TodoAppController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    String edit(@RequestParam(value = "todoId") int todoId, Model model) {
-        TodoApp todoApp = service.findOne(todoId);
-        model.addAttribute("todoApp", todoApp);// ここの"todoApp"というキーがedit.htmlで参照されている
+    String edit(@ModelAttribute("editForm") TodoApp todoApp, @RequestParam(value = "todoId") int todoId, Model model) {
+        TodoApp editForm = service.findOne(todoId);
+        model.addAttribute("editForm", editForm);// ここの"editForm"というキーがedit.htmlで参照されている
         return "edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    String update(@Validated @ModelAttribute TodoApp todoApp, BindingResult bindingResult, @RequestParam int todoId, Model model) {
+    String update(@Validated @ModelAttribute("editForm") TodoApp todoApp, BindingResult bindingResult, @RequestParam int todoId, Model model) {
         if (bindingResult.hasErrors()) {
             return "edit";
         }
@@ -74,7 +73,7 @@ public class TodoAppController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@ModelAttribute("todoApp") TodoApp todoApp, BindingResult bindingResult, Model model) {
+	public String search(@ModelAttribute("searchForm") TodoApp todoApp, BindingResult bindingResult, Model model) {
 		List<TodoApp> todoResult = service.search(todoApp.getTodoId(),todoApp.getCategory(), todoApp.getTitle(), todoApp.getDetail());
         model.addAttribute("todoList", todoResult);
         return "index";

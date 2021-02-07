@@ -13,7 +13,7 @@
     <div class="operation-area">
         <button type="button" onclick="location.href='./new'">New Todo</button>
     </div>
-        <form method="post" th:action="@{/search}" th:object="${todoApp}">
+        <form method="post" th:action="@{/search}" th:object="${searchForm}">
             <table>
               <tr><td>TodoId : <input type="search" name="todoId"/></td></tr>
               <tr><td>Category : <input type="search" name="category"/></td></tr>
@@ -41,13 +41,14 @@
                 <td class="detail" th:text="${result['detail']}"></td>
                 <td>
                     <form method="GET" th:action="@{/edit}">
-                        <input type="hidden" name="todoId" th:value="${result['todoId']}"></input>
-                        <input type="submit" value="Edit"></input>
+                        <input type="hidden" name="todoId" th:value="${result['todoId']}"/>
+                        <input type="submit" value="Edit"/>
                     </form>
                 </td>
                 <td>
-                    <form method="POST" th:action="@{/delete(todoId=${result['todoId']})}">
-                        <input type="submit" value="Delete"></input>
+                    <form method="POST" th:action="@{/delete}">
+                        <input type="hidden" name="todoId" th:value="${result['todoId']}"/>
+                        <input type="submit" value="Delete"/>
                     </form>
                 </td>
             </tr>
