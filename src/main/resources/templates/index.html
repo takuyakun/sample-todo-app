@@ -30,6 +30,7 @@
                 <th>Category</th>
                 <th>Title</th>
                 <th>Detail</th>
+                <th>importance</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,9 @@
                 <td class="category" th:text="${result['category']}"></td>
                 <td class="title" th:text="${result['title']}"></td>
                 <td class="detail" th:text="${result['detail']}"></td>
+                <td>
+                    <input type="checkbox" name="importance"/>
+                </td>
                 <td>
                     <form method="GET" th:action="@{/edit}">
                         <input type="hidden" name="todoId" th:value="${result['todoId']}"/>
