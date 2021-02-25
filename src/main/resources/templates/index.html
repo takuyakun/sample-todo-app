@@ -23,7 +23,7 @@
             </table>
         </form>
         <button type="button" onclick="location.href='./index'">Show all data</button>
-    <table>
+    <table th:if = "${todoList.size()} != 0">
         <thead>
             <tr>
                 <th>TodoId</th>
@@ -58,6 +58,9 @@
             </tr>
         </tbody>
     </table>
+    <div th:if = "${todoList.size()} == 0">
+        <p>Not found</p>
+    </div>
 </body>
 
 </html>

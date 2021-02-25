@@ -10,13 +10,14 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * データアクセスオブジェクト（DataAccessObject=Dao）<br>
  * データアクセス関連を記述するクラス
+ * @Repositoryと書いておくと、他からはは@Autowiredと記述すれば利用できる。Spring Beanという概念。
  */
-@Component
+@Repository
 public class TodoAppDao {
 
     private static final String FIND_ALL_SQL = "SELECT * FROM TODO_APP";

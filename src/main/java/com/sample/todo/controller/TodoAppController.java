@@ -75,7 +75,7 @@ public class TodoAppController {
     @RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(@ModelAttribute("searchForm") TodoApp todoApp, BindingResult bindingResult, Model model) {
 		List<TodoApp> todoResult = service.search(todoApp.getTodoId(),todoApp.getCategory(), todoApp.getTitle(), todoApp.getDetail());
-        model.addAttribute("todoList", todoResult);
+        model.addAttribute("todoList", todoResult);// ここの"todoList"というキーがindex.htmlで参照されている
         return "index";
     }
 
