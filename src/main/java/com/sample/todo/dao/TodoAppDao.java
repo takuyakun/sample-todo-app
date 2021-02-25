@@ -77,7 +77,7 @@ public class TodoAppDao {
         paramMap.addValue("title", "%" + title + "%");
         paramMap.addValue("detail", "%" + detail + "%");
 
-		StringBuilder sql = new StringBuilder();
+		StringBuilder sql = new StringBuilder();// 条件に応じて変化するSQL文を作成
 		sql.append("SELECT * FROM TODO_APP WHERE ");
         boolean andFlg = false;
         /*boolean todoIdFlg = false;

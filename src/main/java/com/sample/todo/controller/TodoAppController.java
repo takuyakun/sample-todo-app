@@ -59,17 +59,17 @@ public class TodoAppController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     String update(@Validated @ModelAttribute("editForm") TodoApp todoApp, BindingResult bindingResult, @RequestParam int todoId, Model model) {
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "edit";// 更新失敗したらeditに戻る
         }
         todoApp.setTodoId(todoId);
         service.update(todoApp);
-        return "redirect:index";
+        return "redirect:index";// 更新成功したらindexに移る
     }
 
     @RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
     String destroy(@RequestParam int todoId, Model model) {
         service.delete(todoId);
-        return "redirect:index";
+        return "redirect:index";// 削除したらindexに移る
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)

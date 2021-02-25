@@ -47,7 +47,7 @@ public class TodoAppService {
     public List<TodoApp> search(int todoId, String category, String title, String detail) {
         List<TodoApp> result = new ArrayList<TodoApp>();
 		if (todoId == 0 && "".equals(category) && "".equals(title) && "".equals(detail)) {
-			result = dao.getTodoAppList();
+			result = dao.getTodoAppList();// 全て空白の場合、全リスト表示する
 		} else {
 			result = dao.search(todoId, category, title, detail);
 		}
