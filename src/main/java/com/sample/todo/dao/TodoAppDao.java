@@ -80,31 +80,24 @@ public class TodoAppDao {
 		StringBuilder sql = new StringBuilder();// 条件に応じて変化するSQL文を作成
 		sql.append("SELECT * FROM TODO_APP WHERE ");
         boolean andFlg = false;
-        /*boolean todoIdFlg = false;
-		boolean categoryFlg = false;
-		boolean titleFlg = false;
-		boolean detailFlg = false;*/
+
 		if (todoId != 0) {
 			sql.append("TODO_ID LIKE :todoId ");
-			//todoIdFlg = true;
 			andFlg = true;
         }
 		if (!"".equals(category)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("CATEGORY LIKE :category ");
-			//categoryFlg = true;
 			andFlg = true;
 		}
 		if (!"".equals(title)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("TITLE LIKE :title ");
-			//titleFlg = true;
 			andFlg = true;
 		}
 		if (!"".equals(detail)) {
 			if (andFlg) sql.append(" AND ");
 			sql.append("DETAIL LIKE :detail ");
-			//detailFlg = true;
 			andFlg = true;
         }
 
